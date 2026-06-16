@@ -1,6 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect x="12" y="8" width="40" height="48" rx="6" fill="#60a5fa"></rect>
-  <line x1="20" y1="22" x2="44" y2="22" stroke="white" stroke-width="3"></line>
-  <line x1="20" y1="32" x2="44" y2="32" stroke="white" stroke-width="3"></line>
-  <line x1="20" y1="42" x2="36" y2="42" stroke="white" stroke-width="3"></line>
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect x="14" y="8" width="36" height="48" rx="6" fill="#60A5FA"></rect>
+  <line x1="22" y1="20" x2="42" y2="20" stroke="white" stroke-width="2"></line>
+  <line x1="22" y1="28" x2="42" y2="28" stroke="white" stroke-width="2"></line>
+  <line x1="22" y1="36" x2="38" y2="36" stroke="white" stroke-width="2"></line>
+  <polygon points="46,14 48,18 52,18 49,21 50,25 46,23 42,25 43,21 40,18 44,18" fill="white"></polygon>
 </svg>

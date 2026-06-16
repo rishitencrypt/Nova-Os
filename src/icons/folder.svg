@@ -1,3 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <path d="M8 20h18l5 6h25v24H8z" fill="#facc15"></path>
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <path d="M8 18H28L34 24H56V46C56 50 54 52 50 52H14C10 52 8 50 8 46V18Z" fill="#FACC15"></path>
+  <circle cx="46" cy="40" r="6" fill="#60A5FA"></circle>
+  <path d="M38 40C38 34 54 34 54 40" stroke="white" stroke-width="1.5"></path>
 </svg>

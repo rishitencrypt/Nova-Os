@@ -1,3 +1,57 @@
+/* ============================================================
+   NovaOS Design System — global tokens
+   Single source of truth for color, radius, spacing, type, motion.
+   Sci-fi spacecraft mission-control palette (dark navy, flat).
+   ============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  /* surfaces */
+  --bg: #050816;
+  --surface: #08111f;
+  --window: #08111f;
+  --elevated: #0c1a2e;
+  --elevated-hover: #123a66;
+
+  /* lines + text */
+  --border: #123a66;
+  --border-strong: #1c4f86;
+  --text: #dbeafe;
+  --text-secondary: #6b9ac4;
+
+  /* semantic */
+  --accent: #38bdf8;
+  --accent-hover: #5fccfa;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+
+  /* radius scale (tight, control-panel feel) */
+  --r-sm: 2px;
+  --r-md: 4px;
+  --r-lg: 6px;
+
+  /* spacing scale (4pt grid) */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+
+  /* flat shadow, used sparingly (no glow) */
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+  /* type */
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Consolas", monospace;
+
+  /* motion */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --t-fast: 150ms;
+  --t-base: 200ms;
+}
+
 html,
 body,
 #root {
@@ -5,4 +59,88 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+/* ============================================================
+   NovaOS Design System — global tokens
+   Single source of truth for color, radius, spacing, type, motion.
+   Sci-fi spacecraft mission-control palette (dark navy, flat).
+   ============================================================ */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+:root {
+  /* surfaces */
+  --bg: #050816;
+  --surface: #08111f;
+  --window: #08111f;
+  --elevated: #0c1a2e;
+  --elevated-hover: #123a66;
+
+  /* lines + text */
+  --border: #123a66;
+  --border-strong: #1c4f86;
+  --text: #dbeafe;
+  --text-secondary: #6b9ac4;
+
+  /* semantic */
+  --accent: #38bdf8;
+  --accent-hover: #5fccfa;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+
+  /* radius scale (tight, control-panel feel) */
+  --r-sm: 2px;
+  --r-md: 4px;
+  --r-lg: 6px;
+
+  /* spacing scale (4pt grid) */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+
+  /* flat shadow, used sparingly (no glow) */
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+  /* type */
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", "Consolas", monospace;
+
+  /* motion */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --t-fast: 150ms;
+  --t-base: 200ms;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }

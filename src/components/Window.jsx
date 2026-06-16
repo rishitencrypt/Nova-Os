@@ -124,7 +124,6 @@ function Window({
         onMouseDown={handleMouseDown}
       >
         <div className="window-controls">
-
           <span
             className="close"
             onClick={onClose}
@@ -132,22 +131,18 @@ function Window({
 
           <span
             className="minimize"
-            onClick={() => {
-              onMinimize?.();
-            }}
+            onClick={onMinimize}
           ></span>
 
           <span
             className="maximize"
             onClick={handleMaximize}
           ></span>
-
         </div>
 
         <div className="window-title">
           {title}
         </div>
-
       </div>
 
       <div className="window-content">

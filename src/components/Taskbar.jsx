@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
-
+import novaLogo from "../icons/nova-logo.svg";
 function Taskbar({
-  toggleStart,
+  setHubOpen,
+  hubOpen,
   openApps = [],
   focusApp,
 }) {
   const [time, setTime] = useState(
     new Date().toLocaleTimeString()
   );
+
+  const toggleStart = () => {
+    setHubOpen(!hubOpen);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,14 +25,16 @@ function Taskbar({
   }, []);
 
   return (
-    <div className="taskbar">
+  <div className="taskbar">
 
-      <button
-        className="start-btn"
+    <div className="taskbar-center">
+
+      <img
+        src={novaLogo}
+        alt="NovaOS"
+        className="taskbar-logo"
         onClick={toggleStart}
-      >
-        NovaOS
-      </button>
+      />
 
       <div className="taskbar-apps">
         {openApps.map((app) => (
@@ -46,12 +53,14 @@ function Taskbar({
         ))}
       </div>
 
-      <div className="clock">
-        {time}
-      </div>
-
     </div>
-  );
+
+    <div className="clock">
+      {time}
+    </div>
+
+  </div>
+);
 }
 
 export default Taskbar;

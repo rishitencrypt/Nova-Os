@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Outer Disc -->
+  <circle cx="32" cy="32" r="24" stroke="#C7D2FE" stroke-width="2.5"></circle>
+
+  <!-- Inner Ring -->
+  <circle cx="32" cy="32" r="16" stroke="#818CF8" stroke-width="2"></circle>
+
+  <!-- Center Hub -->
+  <circle cx="32" cy="32" r="5" fill="#A5B4FC"></circle>
+
+  <!-- Reflection -->
+  <path d="M24 18
+       A18 18 0 0 1 42 24" stroke="#FFFFFF" stroke-opacity="0.75" stroke-width="2" stroke-linecap="round"></path>
+
+  <!-- Data Track -->
+  <circle cx="32" cy="32" r="20" stroke="#6366F1" stroke-width="1" stroke-dasharray="2 3"></circle>
+</svg>

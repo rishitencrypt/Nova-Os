@@ -1,21 +1,62 @@
-<<<<<<< HEAD
-# React + Vite
+# NovaOS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A browser-based desktop environment built with React and Vite.
 
-Currently, two official plugins are available:
+NovaOS recreates a desktop operating system experience inside the browser with custom apps, live wallpapers, notifications, AI tools, music playback, and a modern glass-inspired interface.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+* Live Video Wallpapers
+* Nova Hub Launcher
+* Nova AI Assistant
+* Nova Command Center
+* Nova Music Player
+* Notes Application
+* File Explorer
+* Calculator
+* Settings & Personalization
+* Notification System
+* Emergency Protocol Mode
+* Window Management System
+* First-Time Setup Experience
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Screenshots
 
-## Expanding the ESLint configuration
+### Desktop
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
-# Nova-Os
-NovaOS — A browser-based desktop environment with live wallpapers, Nova AI, Nova Command, Nova Music, and a modern glass UI.
->>>>>>> b61dbb44cdc2ef5c031afb3ae0f8dfc946640f96
+![Desktop](./screenshots/desktop.png)
+
+### Settings
+
+![Settings](./screenshots/settings.png)
+
+### Nova Music
+
+![Nova Music](./screenshots/music.png)
+
+### Nova Command
+
+![Nova Command](./screenshots/command.png)
+
+### Nova Hub
+
+![Nova Hub](./screenshots/hub.png)
+
+## Built With
+
+* React
+* Vite
+* JavaScript
+* CSS
+
+## Project Status
+
+NovaOS v1.0 Release
+
+Built over 3 days as a personal operating system project focused on creating a polished desktop-like experience in the browser.
+
+## Creator
+
+Created by **RishiTenCrypt**
+
+© 2026 RishiTenCrypt. Built for the bridge.

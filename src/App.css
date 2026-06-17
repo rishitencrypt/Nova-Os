@@ -3282,4 +3282,61 @@
     max-width: 90vw;
   }
 }
+.welcome-build {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.6;
+  letter-spacing: 1px;
+}
 
+.welcome-status {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #7ddc91;
+  letter-spacing: 2px;
+}
+
+.welcome-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 24px;
+}
+.welcome-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 12px;
+
+  background: rgba(255,255,255,.04);
+
+  border: 1px solid rgba(255,255,255,.06);
+
+  border-radius: 12px;
+
+  transition: .2s ease;
+}
+
+.feature-item:hover {
+  background: rgba(255,255,255,.08);
+}
+
+.feature-item img {
+  width: 28px;
+  height: 28px;
+}
+
+.feature-item span {
+  font-size: 14px;
+  font-weight: 500;
+}

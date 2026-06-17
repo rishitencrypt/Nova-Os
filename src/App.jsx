@@ -40,7 +40,7 @@ import CursorShip from "./components/CursorShip";
 import AlienPet from "./components/AlienPet";
 import GettingStarted from "./components/GettingStarted";
 import StellarNavigation from "./apps/StellarNavigation";
-
+import gameIcon from "./icons/game.svg";
 function App() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [settingsMinimized, setSettingsMinimized] = useState(false);
@@ -309,9 +309,9 @@ function App() {
       ? [{ name: "Nova Music", icon: musicIcon }]
       : []),
     ...(stellarOpen &&
-    !pinnedApps.some((app) => app.name === "Stellar Navigation")
-      ? [{ name: "Stellar Navigation", icon: rocketIcon }]
-      : []),
+!pinnedApps.some((app) => app.name === "Stellar Navigation")
+  ? [{ name: "Stellar Navigation", icon: gameIcon }]
+  : []),
   ];
 
   if (booting) {
@@ -455,10 +455,10 @@ function App() {
       />
 
       <DesktopIcon
-        icon={<img src={rocketIcon} alt="" width="40" />}
-        label="Stellar Navigation"
-        top="730px"
-        left="30px"
+  icon={<img src={gameIcon} alt="" width="40" />}
+  label="Stellar Navigation"
+        top="30px"
+        left="130px"
         onDoubleClick={() => {
           setStellarOpen(true);
           setStellarMinimized(false);

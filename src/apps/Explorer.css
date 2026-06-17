@@ -1,0 +1,990 @@
+/* ============================================================
+   NovaOS Explorer — File Manager
+   Preserves existing NovaOS glassmorphism aesthetic.
+   No neon, no glow, no cyberpunk. Functional OS feel.
+   ============================================================ */
+
+.explorer {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: #e8eef8;
+  font-family: "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  overflow: hidden;
+  position: relative;
+}
+
+.explorer * {
+  box-sizing: border-box;
+}
+
+.ex-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================================
+   Sidebar
+   ============================================================ */
+.ex-sidebar {
+  width: 200px;
+  flex-shrink: 0;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px 10px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(10, 14, 26, 0.35);
+  overflow-y: auto;
+}
+
+.ex-sidebar-header {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(180, 200, 230, 0.7);
+  padding: 0 8px 12px;
+}
+
+.ex-sidebar-section {
+  margin-bottom: 16px;
+}
+
+.ex-sidebar-section-title {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(160, 180, 210, 0.5);
+  padding: 0 8px 6px;
+}
+
+.ex-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 7px 10px;
+  margin-bottom: 2px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: rgba(220, 230, 245, 0.85);
+  font-size: 12.5px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+  font-family: inherit;
+}
+
+.ex-sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  color: #e8eef8;
+}
+
+.ex-sidebar-item.active {
+  background: rgba(120, 160, 220, 0.18);
+  color: #e8eef8;
+}
+
+.ex-sidebar-item span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ex-sidebar-spacer {
+  flex: 1;
+}
+
+/* Storage panel */
+.ex-storage {
+  margin-top: 12px;
+  padding: 12px 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+}
+
+.ex-storage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(200, 220, 240, 0.85);
+  margin-bottom: 8px;
+}
+
+.ex-storage-pct {
+  font-size: 10px;
+  color: rgba(160, 180, 210, 0.7);
+  font-variant-numeric: tabular-nums;
+}
+
+.ex-storage-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.ex-storage-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6a8ab8, #8ab8e0);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+.ex-storage-text {
+  font-size: 10px;
+  color: rgba(160, 180, 210, 0.6);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================================
+   Main area
+   ============================================================ */
+.ex-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+/* ---------- Toolbar ---------- */
+.ex-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(10, 14, 26, 0.25);
+  flex-shrink: 0;
+}
+
+.ex-toolbar-nav {
+  display: flex;
+  gap: 4px;
+}
+
+.ex-toolbar-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(220, 230, 245, 0.85);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.ex-toolbar-btn:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e8eef8;
+}
+
+.ex-toolbar-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Breadcrumb */
+.ex-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 7px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.ex-breadcrumb::-webkit-scrollbar {
+  display: none;
+}
+
+.ex-crumb-wrap {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.ex-crumb {
+  border: none;
+  background: transparent;
+  color: rgba(200, 220, 240, 0.85);
+  font-size: 12px;
+  padding: 3px 6px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.12s ease;
+}
+
+.ex-crumb:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e8eef8;
+}
+
+.ex-crumb-sep {
+  color: rgba(160, 180, 210, 0.4);
+  font-size: 11px;
+  user-select: none;
+}
+
+/* Search */
+.ex-toolbar-search {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 7px;
+  width: 200px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.ex-search-icon {
+  color: rgba(160, 180, 210, 0.6);
+  flex-shrink: 0;
+}
+
+.ex-search-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #e8eef8;
+  font-size: 12px;
+  padding: 7px 0;
+  font-family: inherit;
+  outline: none;
+  min-width: 0;
+}
+
+.ex-search-input::placeholder {
+  color: rgba(160, 180, 210, 0.5);
+}
+
+.ex-search-clear {
+  border: none;
+  background: transparent;
+  color: rgba(160, 180, 210, 0.6);
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 2px;
+  font-family: inherit;
+}
+
+.ex-search-clear:hover {
+  color: #e8eef8;
+}
+
+/* Controls (sort + view toggle) */
+.ex-toolbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ex-sort-select {
+  padding: 6px 10px;
+  border-radius: 7px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(220, 230, 245, 0.85);
+  font-size: 11px;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+.ex-sort-select:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ex-view-toggle {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 7px;
+}
+
+.ex-view-btn {
+  width: 26px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: rgba(160, 180, 210, 0.6);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+.ex-view-btn:hover {
+  color: #e8eef8;
+}
+
+.ex-view-btn.active {
+  background: rgba(120, 160, 220, 0.25);
+  color: #e8eef8;
+}
+
+/* ---------- Content area ---------- */
+.ex-content {
+  flex: 1;
+  overflow: auto;
+  padding: 14px;
+  position: relative;
+}
+
+/* ============================================================
+   Grid view
+   ============================================================ */
+.ex-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 8px;
+  align-content: start;
+}
+
+.ex-grid-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 8px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: background 0.12s ease, border-color 0.12s ease;
+  user-select: none;
+}
+
+.ex-grid-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ex-grid-item.selected {
+  background: rgba(120, 160, 220, 0.18);
+  border-color: rgba(120, 160, 220, 0.35);
+}
+
+.ex-grid-item.drag-over {
+  background: rgba(120, 160, 220, 0.12);
+  border-color: rgba(120, 160, 220, 0.4);
+}
+
+.ex-grid-name {
+  font-size: 11.5px;
+  color: rgba(220, 230, 245, 0.9);
+  text-align: center;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   List view
+   ============================================================ */
+.ex-list {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.ex-list-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(160, 180, 210, 0.6);
+}
+
+.ex-list-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.ex-list-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background 0.1s ease, border-color 0.1s ease;
+  user-select: none;
+}
+
+.ex-list-row:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ex-list-row.selected {
+  background: rgba(120, 160, 220, 0.18);
+  border-color: rgba(120, 160, 220, 0.3);
+}
+
+.ex-list-row.drag-over {
+  background: rgba(120, 160, 220, 0.12);
+  border-color: rgba(120, 160, 220, 0.4);
+}
+
+.ex-list-col {
+  padding: 0 8px;
+  font-size: 12px;
+  color: rgba(220, 230, 245, 0.85);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ex-list-col-name {
+  flex: 2.5;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+
+.ex-list-col-type {
+  flex: 1.2;
+  color: rgba(180, 200, 220, 0.65);
+  font-size: 11px;
+}
+
+.ex-list-col-size {
+  flex: 1;
+  color: rgba(180, 200, 220, 0.65);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ex-list-col-modified {
+  flex: 1.5;
+  color: rgba(180, 200, 220, 0.65);
+  font-size: 11px;
+}
+
+/* ============================================================
+   Rename input (inline)
+   ============================================================ */
+.ex-rename-input {
+  flex: 1;
+  min-width: 0;
+  padding: 2px 5px;
+  border: 1px solid rgba(120, 160, 220, 0.5);
+  border-radius: 4px;
+  background: rgba(10, 14, 26, 0.9);
+  color: #e8eef8;
+  font-size: 12px;
+  font-family: inherit;
+  outline: none;
+}
+
+.ex-grid-item .ex-rename-input {
+  width: 100%;
+  text-align: center;
+}
+
+/* ============================================================
+   Empty state
+   ============================================================ */
+.ex-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 300px;
+  text-align: center;
+  color: rgba(180, 200, 220, 0.5);
+}
+
+.ex-empty-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(200, 220, 240, 0.75);
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.ex-empty-sub {
+  font-size: 11.5px;
+  color: rgba(160, 180, 210, 0.5);
+}
+
+/* ============================================================
+   Details panel
+   ============================================================ */
+.ex-details {
+  width: 230px;
+  flex-shrink: 0;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 16px;
+  background: rgba(10, 14, 26, 0.25);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.ex-details-header {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(180, 200, 230, 0.7);
+  margin-bottom: 14px;
+}
+
+.ex-details-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+  gap: 12px;
+  color: rgba(160, 180, 210, 0.5);
+  font-size: 11.5px;
+}
+
+.ex-details-empty-icon {
+  opacity: 0.6;
+}
+
+.ex-details-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0 12px;
+  margin-bottom: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ex-details-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e8eef8;
+  text-align: center;
+  margin-bottom: 14px;
+  word-break: break-word;
+  line-height: 1.35;
+}
+
+.ex-details-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.ex-details-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 11.5px;
+}
+
+.ex-details-label {
+  color: rgba(160, 180, 210, 0.6);
+  flex-shrink: 0;
+  min-width: 60px;
+}
+
+.ex-details-value {
+  color: rgba(220, 230, 245, 0.9);
+  text-align: right;
+  word-break: break-word;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.ex-status-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6b9e78;
+}
+
+/* ============================================================
+   Context menu
+   ============================================================ */
+.ex-context-menu {
+  position: fixed;
+  z-index: 100000;
+  min-width: 180px;
+  padding: 5px;
+  background: rgba(18, 22, 32, 0.92);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  animation: exMenuIn 0.14s ease-out;
+}
+
+@keyframes exMenuIn {
+  from { opacity: 0; transform: scale(0.97); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.ex-context-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  background: transparent;
+  color: rgba(220, 230, 245, 0.9);
+  font-size: 12px;
+  text-align: left;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.1s ease;
+}
+
+.ex-context-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ex-context-item.danger {
+  color: #e08a8a;
+}
+
+.ex-context-item.danger:hover {
+  background: rgba(224, 138, 138, 0.12);
+}
+
+.ex-context-shortcut {
+  font-size: 10px;
+  color: rgba(160, 180, 210, 0.5);
+  font-variant-numeric: tabular-nums;
+}
+
+.ex-context-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: 4px 6px;
+}
+
+/* ============================================================
+   Modal (delete confirmation / properties)
+   ============================================================ */
+.ex-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100001;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: exFadeIn 0.15s ease-out;
+}
+
+@keyframes exFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.ex-modal {
+  width: 360px;
+  max-width: 90vw;
+  padding: 22px;
+  background: rgba(20, 24, 34, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  animation: exModalIn 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes exModalIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.ex-modal-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #e8eef8;
+  margin-bottom: 10px;
+}
+
+.ex-modal-message {
+  font-size: 12.5px;
+  color: rgba(200, 220, 240, 0.8);
+  line-height: 1.55;
+  white-space: pre-line;
+  margin-bottom: 20px;
+}
+
+.ex-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.ex-modal-btn {
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(220, 230, 245, 0.9);
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.ex-modal-cancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ex-modal-confirm {
+  background: rgba(168, 90, 90, 0.25);
+  border-color: rgba(168, 90, 90, 0.45);
+  color: #f0b0b0;
+}
+
+.ex-modal-confirm:hover {
+  background: rgba(168, 90, 90, 0.35);
+  border-color: rgba(168, 90, 90, 0.6);
+}
+
+/* When used for properties (close button) */
+.ex-modal-actions .ex-modal-confirm {
+  background: rgba(120, 160, 220, 0.25);
+  border-color: rgba(120, 160, 220, 0.45);
+  color: #c8d8f0;
+}
+
+.ex-modal-actions .ex-modal-confirm:hover {
+  background: rgba(120, 160, 220, 0.35);
+}
+
+/* ============================================================
+   Preview window
+   ============================================================ */
+.ex-preview-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100002;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: exFadeIn 0.2s ease-out;
+}
+
+.ex-preview {
+  width: 640px;
+  max-width: 90vw;
+  height: 480px;
+  max-height: 85vh;
+  background: rgba(20, 24, 34, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: exModalIn 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ex-preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ex-preview-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e8eef8;
+}
+
+.ex-preview-close {
+  width: 26px;
+  height: 26px;
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(220, 230, 245, 0.85);
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+
+.ex-preview-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #e8eef8;
+}
+
+.ex-preview-body {
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  gap: 16px;
+}
+
+.ex-preview-image-placeholder,
+.ex-preview-pdf-placeholder,
+.ex-preview-generic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.ex-preview-meta {
+  font-size: 12px;
+  color: rgba(180, 200, 220, 0.7);
+}
+
+.ex-preview-hint {
+  font-size: 11px;
+  color: rgba(160, 180, 210, 0.5);
+  font-style: italic;
+}
+
+.ex-preview-pdf-lines {
+  width: 80%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.ex-preview-pdf-lines > div {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+}
+
+.ex-preview-pdf-lines > div:nth-child(2n) {
+  width: 85%;
+}
+
+.ex-preview-pdf-lines > div:nth-child(3n) {
+  width: 70%;
+}
+
+.ex-preview-pdf-lines > div:last-child {
+  width: 50%;
+}
+
+.ex-preview-text {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-self: flex-start;
+  padding: 8px 0;
+}
+
+.ex-preview-text-line {
+  height: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+.ex-preview-text-line.short {
+  width: 60%;
+}
+
+.ex-preview-text-line:nth-child(even):not(.short) {
+  width: 90%;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 900px) {
+  .ex-sidebar { width: 160px; }
+  .ex-details { width: 190px; }
+  .ex-toolbar-search { width: 140px; }
+}
+
+@media (max-width: 640px) {
+  .ex-details { display: none; }
+  .ex-sidebar { width: 140px; }
+  .ex-list-col-modified { display: none; }
+}
+
+/* ============================================================
+   Reduced motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .ex-context-menu,
+  .ex-modal-overlay,
+  .ex-modal,
+  .ex-preview-overlay,
+  .ex-preview {
+    animation: none !important;
+  }
+  .ex-storage-fill,
+  .ex-sidebar-item,
+  .ex-list-row,
+  .ex-grid-item,
+  .ex-toolbar-btn,
+  .ex-view-btn,
+  .ex-crumb,
+  .ex-context-item,
+  .ex-modal-btn {
+    transition: none !important;
+  }
+}

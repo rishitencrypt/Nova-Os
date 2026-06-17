@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+
+  <defs>
+    <!-- NovaOS Background -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2B3039"></stop>
+      <stop offset="100%" stop-color="#23272F"></stop>
+    </linearGradient>
+
+    <!-- Ice Blue Titanium -->
+    <linearGradient id="shipMetal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#B7DDF0"></stop>
+      <stop offset="100%" stop-color="#6FB4D8"></stop>
+    </linearGradient>
+
+    <!-- Cockpit -->
+    <linearGradient id="cockpit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#E4F4FB"></stop>
+      <stop offset="100%" stop-color="#9CCDE3"></stop>
+    </linearGradient>
+
+    <!-- Subtle Brushed Texture -->
+    <pattern id="brush" width="4" height="4" patternUnits="userSpaceOnUse">
+      <path d="M0 0H4" stroke="#ffffff" stroke-opacity=".03"></path>
+      <path d="M0 2H4" stroke="#000000" stroke-opacity=".03"></path>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#bg)" stroke="#444B56" stroke-width="1.5"></rect>
+
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#brush)"></rect>
+
+  <!-- ========================= -->
+  <!-- SPACECRAFT SILHOUETTE     -->
+  <!-- ========================= -->
+
+  <!-- Main Hull -->
+  <path d="
+      M128 42
+      L140 60
+      L146 82
+
+      L146 124
+
+      L186 154
+      L164 168
+
+      L156 190
+
+      L144 210
+      L112 210
+
+      L100 190
+
+      L92 168
+      L70 154
+
+      L110 124
+
+      L110 82
+      L116 60
+      Z" fill="url(#shipMetal)" stroke="#D8EEF8" stroke-width="2.5" stroke-linejoin="round"></path>
+
+  <!-- Swept Wings -->
+  <path d="
+      M110 118
+      L54 176
+      L92 164
+      L110 146
+      Z" fill="#84BDD9"></path>
+
+  <path d="
+      M146 118
+      L202 176
+      L164 164
+      L146 146
+      Z" fill="#84BDD9"></path>
+
+  <!-- Cockpit -->
+  <path d="
+      M128 66
+      L138 82
+      L128 96
+      L118 82
+      Z" fill="url(#cockpit)" stroke="#EAF7FD" stroke-width="1"></path>
+
+  <!-- Central Spine -->
+  <rect x="122" y="96" width="12" height="90" rx="4" fill="#5B9EBF" opacity=".45"></rect>
+
+  <!-- Engine Housings -->
+  <rect x="96" y="176" width="24" height="34" rx="6" fill="#8BC0DB" stroke="#D8EEF8" stroke-width="1.5"></rect>
+
+  <rect x="136" y="176" width="24" height="34" rx="6" fill="#8BC0DB" stroke="#D8EEF8" stroke-width="1.5"></rect>
+
+  <!-- Engine Exhausts -->
+  <rect x="101" y="194" width="14" height="10" rx="2" fill="#4E6C7D"></rect>
+
+  <rect x="141" y="194" width="14" height="10" rx="2" fill="#4E6C7D"></rect>
+
+  <!-- Rear Center Structure -->
+  <rect x="122" y="178" width="12" height="28" rx="3" fill="#79B5D3"></rect>
+
+</svg>

@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 
+
 const ACCENT = "#6366F1";
-const GREEN = "#22C55E";
-const RED = "#EF4444";
+const CONTACT = "rgba(220,220,220,0.9)";
+const ORANGE = "#ffffffc7";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -112,14 +113,14 @@ export default function OrbitalWidget() {
       ctx.arc(cx, cy, maxR, a - 0.5, a);
       ctx.closePath();
       const sg = ctx.createRadialGradient(cx, cy, 0, cx, cy, maxR);
-      sg.addColorStop(0, "rgba(79,70,229,0.45)");
-      sg.addColorStop(1, "rgba(79,70,229,0)");
+      sg.addColorStop(0, "rgba(255,255,255,0.08)");
+sg.addColorStop(1, "rgba(255,255,255,0)");
       ctx.fillStyle = sg;
       ctx.fill();
       ctx.restore();
 
       // Sweep leading line
-      ctx.strokeStyle = "rgba(99,102,241,0.85)";
+      ctx.strokeStyle = "rgba(220,220,220,0.35)";
       ctx.lineWidth = 1.5;
       ctx.beginPath();
       ctx.moveTo(cx, cy);
@@ -130,20 +131,11 @@ export default function OrbitalWidget() {
       contacts.forEach((c) => {
         const x = cx + Math.cos(c.angle) * maxR * c.radius;
         const y = cy + Math.sin(c.angle) * maxR * c.radius;
-        let diff = Math.abs(((a - c.angle) % (Math.PI * 2) + Math.PI * 2) % (Math.PI * 2));
-        if (diff > Math.PI) diff = Math.PI * 2 - diff;
-        const glow = Math.max(0.25, 1 - diff / 0.9);
-        const color = c.hostile ? RED : GREEN;
-        ctx.fillStyle = color;
-        ctx.globalAlpha = glow;
-        ctx.beginPath();
-        ctx.arc(x, y, c.size, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = glow * 0.3;
-        ctx.beginPath();
-        ctx.arc(x, y, c.size * 2.4, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.globalAlpha = 1;
+        ctx.fillStyle = CONTACT;
+
+ctx.beginPath();
+ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+ctx.fill();
       });
 
       // Center node
@@ -159,9 +151,7 @@ export default function OrbitalWidget() {
     return () => cancelAnimationFrame(raf);
   }, [contacts]);
 
-  const hostiles = contacts.filter((c) => c.hostile).length;
-  const status = hostiles > 0 ? "ALERT" : "STABLE";
-  const statusColor = hostiles > 0 ? RED : GREEN;
+  const tracks = contacts.length;
 
   const hh = String(now.getHours()).padStart(2, "0");
   const mm = String(now.getMinutes()).padStart(2, "0");
@@ -171,7 +161,21 @@ export default function OrbitalWidget() {
     <div style={styles.wrapper}>
       <div style={styles.header}>
         <span style={styles.dot} />
-        <span style={styles.title}>TACTICAL SENSOR ARRAY</span>
+        <div>
+  <div style={styles.title}>
+    NOVA SCANNER
+  </div>
+
+  <div
+    style={{
+      fontSize: 11,
+      color: "#94A3B8",
+      marginTop: 2,
+    }}
+  >
+    Long Range Sensor Grid
+  </div>
+</div>
       </div>
 
       <div style={styles.radarBox}>
@@ -191,15 +195,16 @@ export default function OrbitalWidget() {
         </div>
 
         <div style={styles.metricRow}>
-          <span style={styles.label}>SIGNAL</span>
-          <span style={{ ...styles.value, color: signal >= 97 ? GREEN : ACCENT }}>
-            {signal}%
-          </span>
-        </div>
-        <div style={styles.metricRow}>
-          <span style={styles.label}>STATUS</span>
-          <span style={{ ...styles.value, color: statusColor }}>{status}</span>
-        </div>
+  <span style={styles.label}>TRACKS</span>
+  <span style={styles.value}>{tracks}</span>
+</div>
+
+<div style={styles.metricRow}>
+  <span style={styles.label}>SIGNAL</span>
+  <span style={{ ...styles.value, color: ORANGE }}>
+    {signal}%
+  </span>
+</div>
       </div>
     </div>
   );
@@ -212,51 +217,53 @@ const styles = {
   right: 20,
   zIndex: 1,
 
-  width: 300,
-  height: 380,
-    boxSizing: "border-box",
-    display: "flex",
-    flexDirection: "column",
-    padding: "12px 14px",
-    borderRadius: 14,
-    background:
-  "linear-gradient(135deg, rgba(30,41,59,0.35), rgba(15,23,42,0.55))",
+  width: 320,
+  height: 420,
 
-border: "1px solid rgba(255,255,255,0.15)",
+  display: "flex",
+  flexDirection: "column",
 
-boxShadow:
-  `
-  0 8px 32px rgba(0,0,0,0.35),
-  inset 0 1px 0 rgba(255,255,255,0.20),
-  inset 0 -1px 0 rgba(255,255,255,0.05)
-  `,
+  overflow: "hidden",
 
-backdropFilter: "blur(20px) saturate(180%)",
-WebkitBackdropFilter: "blur(20px) saturate(180%)",
-    fontFamily:
-      "'SF Mono', ui-monospace, 'Roboto Mono', Menlo, monospace",
-    color: "#E2E8F0",
-    userSelect: "none",
-  },
+  borderRadius: 28,
+
+  background:
+    "linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03))",
+
+  border:
+    "1px solid rgba(255,255,255,0.12)",
+
+  backdropFilter: "blur(28px)",
+  WebkitBackdropFilter: "blur(28px)",
+
+  boxShadow:
+    "0 20px 60px rgba(0,0,0,0.45)",
+
+  color: "#E2E8F0",
+},
   header: {
-    display: "flex",
-    alignItems: "center",
-    gap: 8,
-    marginBottom: 8,
-  },
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+
+  padding: "16px 18px",
+
+  borderBottom:
+    "1px solid rgba(144, 29, 29, 0.08)",
+},
   dot: {
-    width: 6,
-    height: 6,
-    borderRadius: "50%",
-    background: ACCENT,
-    boxShadow: `0 0 8px ${ACCENT}`,
-  },
+  width: 8,
+  height: 8,
+  borderRadius: "50%",
+  background: "#11c1e4",
+},
   title: {
-    fontSize: 10.5,
-    letterSpacing: 1.6,
-    fontWeight: 600,
-    color: "#CBD5E1",
-  },
+  fontSize: 18,
+  fontWeight: 800,
+  letterSpacing: 1,
+
+  color: "#c2c2c2",
+},
   radarBox: {
   position: "relative",
   flex: 1,
@@ -284,13 +291,8 @@ WebkitBackdropFilter: "blur(20px) saturate(180%)",
   footer: {
   display: "flex",
   flexDirection: "column",
-  gap: 4,
-
-  background: "rgba(255,255,255,0.03)",
-  borderRadius: 10,
-  padding: "8px 10px",
-
-  border: "1px solid rgba(255,255,255,0.06)",
+  gap: 8,
+  padding: "14px 16px",
 },
 timeRow: {
   display: "flex",
@@ -316,7 +318,7 @@ function corner(pos) {
     width: 10,
     height: 10,
     borderStyle: "solid",
-    borderColor: "rgba(79,70,229,0.6)",
+    borderColor: "rgba(255,255,255,0.18)",
     ...pos,
   };
 }

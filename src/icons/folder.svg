@@ -1,5 +1,21 @@
-<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <path d="M8 18H28L34 24H56V46C56 50 54 52 50 52H14C10 52 8 50 8 46V18Z" fill="#FACC15"></path>
-  <circle cx="46" cy="40" r="6" fill="#60A5FA"></circle>
-  <path d="M38 40C38 34 54 34 54 40" stroke="white" stroke-width="1.5"></path>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#2B3039"></stop>
+    <stop offset="100%" stop-color="#23272F"></stop>
+  </linearGradient>
+
+  <linearGradient id="folder" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#D3AE79"></stop>
+    <stop offset="100%" stop-color="#C79A5D"></stop>
+  </linearGradient>
+</defs>
+
+<rect x="8" y="8" width="240" height="240" rx="56" fill="url(#bg)" stroke="#444B56" stroke-width="1.5"></rect>
+
+<path d="M60 94H110L124 108H196V176H60Z" fill="url(#folder)" stroke="#E2C291" stroke-width="3" stroke-linejoin="round"></path>
+
+<path d="M60 94H110L122 106H196" fill="none" stroke="#F0D2A7" stroke-width="3"></path>
+
+<line x1="60" y1="108" x2="196" y2="108" stroke="#9E7443" stroke-width="3"></line>
 </svg>

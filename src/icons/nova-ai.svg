@@ -1,11 +1,75 @@
-<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="32" cy="34" r="18" fill="#CBD5E1"></circle>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
 
-  <circle cx="26" cy="32" r="4" fill="#60A5FA"></circle>
-  <circle cx="38" cy="32" r="4" fill="#60A5FA"></circle>
+  <defs>
 
-  <rect x="26" y="42" width="12" height="3" rx="1.5" fill="#111827"></rect>
+    <!-- NovaOS Background -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2B3039"></stop>
+      <stop offset="100%" stop-color="#23272F"></stop>
+    </linearGradient>
 
-  <line x1="32" y1="10" x2="32" y2="16" stroke="#CBD5E1" stroke-width="3"></line>
-  <circle cx="32" cy="8" r="3" fill="#60A5FA"></circle>
+    <!-- Titanium Metal -->
+    <linearGradient id="metal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F3F6FA"></stop>
+      <stop offset="45%" stop-color="#D6DFEA"></stop>
+      <stop offset="100%" stop-color="#BCC7D4"></stop>
+    </linearGradient>
+
+    <!-- AI Blue -->
+    <linearGradient id="aiBlue" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#7FA8FF"></stop>
+      <stop offset="100%" stop-color="#4A78D0"></stop>
+    </linearGradient>
+
+    <!-- Visor -->
+    <linearGradient id="visor" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#10151C"></stop>
+      <stop offset="100%" stop-color="#06090D"></stop>
+    </linearGradient>
+
+  </defs>
+
+  <!-- Background -->
+
+  <rect x="8" y="8" width="240" height="240" rx="56" fill="url(#bg)" stroke="#444B56" stroke-width="1.5"></rect>
+
+  <!-- Head -->
+
+  <rect x="56" y="52" width="144" height="152" rx="72" fill="url(#metal)" stroke="#EEF4FA" stroke-width="2"></rect>
+
+  <!-- Side Pods -->
+
+  <rect x="40" y="96" width="28" height="64" rx="14" fill="url(#metal)" stroke="#DCE6F0" stroke-width="1.5"></rect>
+
+  <rect x="188" y="96" width="28" height="64" rx="14" fill="url(#metal)" stroke="#DCE6F0" stroke-width="1.5"></rect>
+
+  <!-- Visor -->
+
+  <rect x="72" y="92" width="112" height="72" rx="28" fill="url(#visor)"></rect>
+
+  <!-- Eyes -->
+
+  <rect x="92" y="116" width="28" height="12" rx="6" fill="url(#aiBlue)"></rect>
+
+  <rect x="136" y="116" width="28" height="12" rx="6" fill="url(#aiBlue)"></rect>
+
+  <!-- Sensor -->
+
+  <rect x="122" y="68" width="12" height="24" rx="6" fill="#E8EEF5"></rect>
+
+  <rect x="125" y="72" width="6" height="16" rx="3" fill="url(#aiBlue)"></rect>
+
+  <!-- Mouth -->
+
+  <rect x="118" y="172" width="20" height="4" rx="2" fill="#7FA8FF"></rect>
+
+  <!-- Lower Chin Detail -->
+
+  <path d="
+      M104 188
+      H152
+      L144 198
+      H112
+      Z" fill="#C7D2DE"></path>
+
 </svg>

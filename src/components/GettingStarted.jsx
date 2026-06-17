@@ -43,27 +43,27 @@ function GettingStarted({
           <div className="welcome-features">
 
             <div>
-              ◈ Nova AI
+              * Nova AI
             </div>
 
             <div>
-              ◈ Nova Command
+              * Nova Command
             </div>
 
             <div>
-              ◈ Nova Music
+              * Nova Music
             </div>
 
             <div>
-              ◈ Settings
+              * Settings
             </div>
 
             <div>
-              ◈ Live Wallpapers
+              * Live Wallpapers
             </div>
 
             <div>
-              ◈ Emergency Protocol
+              * Emergency Protocol
             </div>
 
           </div>

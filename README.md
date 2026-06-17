@@ -1,46 +1,30 @@
 # NovaOS
 
-A browser-based desktop environment built with React and Vite.
+NovaOS is a browser-based desktop environment built with React and Vite.
 
-NovaOS recreates a desktop operating system experience inside the browser with custom apps, live wallpapers, notifications, AI tools, music playback, and a modern glass-inspired interface.
+The project started as an experiment to see how close a web application could get to feeling like a real operating system. Over time it evolved into a fully interactive desktop experience with custom applications, window management, live wallpapers, notifications, personalization features, and its own sci-fi inspired interface.
+
+Unlike traditional dashboard projects, NovaOS focuses on recreating the feeling of using a desktop computer directly inside the browser.
 
 ## Features
 
-* Live Video Wallpapers
-* Nova Hub Launcher
-* Nova AI Assistant
+* Multi-window desktop environment
+* Draggable and resizable application windows
+* Live and animated wallpapers
+* Nova AI assistant
 * Nova Command Center
-* Nova Music Player
-* Notes Application
+* Nova Music player
 * File Explorer
+* Notes application
 * Calculator
-* Settings & Personalization
-* Notification System
-* Emergency Protocol Mode
-* Window Management System
-* First-Time Setup Experience
-
-## Screenshots
-
-### Desktop
-
-![Desktop](./screenshots/desktop.png)
-
-### Settings
-
-![Settings](./screenshots/settings.png)
-
-### Nova Music
-
-![Nova Music](./screenshots/music.png)
-
-### Nova Command
-
-![Nova Command](./screenshots/command.png)
-
-### Nova Hub
-
-![Nova Hub](./screenshots/hub.png)
+* Settings and personalization
+* Notification system
+* Emergency Protocol mode
+* First-time onboarding experience
+* Taskbar and launcher system
+* Custom desktop icons
+* Interactive desktop widgets
+* Stellar Navigation simulator
 
 ## Built With
 
@@ -48,15 +32,8 @@ NovaOS recreates a desktop operating system experience inside the browser with c
 * Vite
 * JavaScript
 * CSS
-
-## Project Status
-
-NovaOS v1.0 Release
-
-Built over 3 days as a personal operating system project focused on creating a polished desktop-like experience in the browser.
-
 ## Creator
 
-Created by **RishiTenCrypt**
+Built by **RishiTenCrypt**
 
-© 2026 RishiTenCrypt. Built for the bridge.
+"Built for the bridge."
